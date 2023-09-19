@@ -3,6 +3,7 @@ import { Task } from './task.entity'
 import { sequelize } from '../configs/database'
 import { DataTypes, Model } from 'sequelize'
 
+// Schema de una tarea en MongoDB con Mongoose
 const TaskSchemaMongo = new Schema<Task>({
   content: {
     type: String,
@@ -17,8 +18,10 @@ const TaskSchemaMongo = new Schema<Task>({
   id: true
 })
 
+// Modelo de una tarea en MongoDB con Mongoose
 const TaskModelMongo = model<Task>('Task', TaskSchemaMongo)
 
+// Modelo de una tarea en MySQL con Sequelize
 class TaskModelMysql extends Model<Task> implements Task {
   // @ts-ignore
   public id: string
@@ -48,4 +51,5 @@ TaskModelMysql.init({
   tableName: 'tasks'
 })
 
+// Exportar los modelos
 export { TaskModelMysql, TaskModelMongo }

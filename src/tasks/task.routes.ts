@@ -1,9 +1,13 @@
 import { Router } from 'express'
 import { TaskService } from './task.service'
 
+// funcion de creacion de un enrutador de tareas
+// recibe un servicio de tareas por parametro
 function startTaskRouter (taskService: TaskService) {
+  // instancia de un enrutador
   const taskRouter = Router()
 
+  // rutas
   taskRouter.get('/', async (req, res) => {
     const allTasks = await taskService.list()
     res.status(200).json(allTasks)
